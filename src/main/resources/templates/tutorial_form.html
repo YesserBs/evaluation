@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Metadata -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+  <!-- Scripts -->
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+  <title>[[${pageTitle}]]</title>
+</head>
+
+<body>
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- Main Content -->
+<div class="container-fluid">
+  <h2 class="text-center my-4">[[${pageTitle}]]</h2>
+
+  <div class="my-3">
+    <!-- Form -->
+    <form th:action="@{/tutorials/save}" method="post" enctype="multipart/form-data"
+          th:object="${tutorial}" class="mx-auto shadow p-4 rounded" style="max-width: 550px;">
+
+      <!-- Hidden ID Field -->
+      <input type="hidden" th:field="*{id}" />
+
+      <!-- Title Field -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" th:field="*{title}" required minlength="2" maxlength="128"
+               class="form-control" id="title" placeholder="Enter title" />
+      </div>
+
+      <!-- Description Field -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" th:field="*{description}" minlength="2" maxlength="256"
+               class="form-control" id="description" placeholder="Enter description" />
+      </div>
+
+      <!-- Importance Level -->
+      <div class="mb-3">
+        <label for="level" class="form-label">Importance</label>
+        <input type="number" th:field="*{level}" required min="1" step="1"
+               class="form-control" id="level" placeholder="Enter importance level" />
+      </div>
+
+      <!-- Done Checkbox -->
+      <div class="mb-3 form-check">
+        <input type="checkbox" th:field="*{published}" class="form-check-input" id="published" />
+        <label for="published" class="form-check-label">Done</label>
+      </div>
+
+      <!-- Buttons -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+        <button type="button" id="btnCancel" class="btn btn-secondary btn-sm">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  $(document).ready(function () {
+    // Cancel Button Redirect
+    $("#btnCancel").on("click", function () {
+      window.location.href = "[[@{/tutorials}]]";
+    });
+  });
+</script>
+</body>
+
+</html>

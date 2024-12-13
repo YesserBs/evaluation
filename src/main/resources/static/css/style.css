@@ -1,0 +1,32 @@
+.navbar {
+  padding: 10px;
+}
+
+.icon-dark {
+  color: grey;
+}
+
+.message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+}
+
+.table thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+  border-radius: 4px;
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+}
